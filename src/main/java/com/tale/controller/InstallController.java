@@ -143,6 +143,7 @@ public class InstallController extends BaseController {
                 LOGGER.error(msg, e);
             }
             return RestResponse.fail(msg);
+           // return RestResponse.ok();
         }
         return RestResponse.ok();
     }

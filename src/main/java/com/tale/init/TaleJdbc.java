@@ -10,6 +10,7 @@ import org.sql2o.Sql2o;
 
 import javax.sql.DataSource;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -47,10 +48,13 @@ public final class TaleJdbc {
         jdbc_prop.put("poolPreparedStatements", "true");
         jdbc_prop.put("maxPoolPreparedStatementPerConnectionSize", "50");
         jdbc_prop.put("filters", "stat");
-
+        System.out.println(System.getProperty("user.dir"));
+       
+      
         InputStream in = TaleJdbc.class.getClassLoader().getResourceAsStream("jdbc.properties");
         Properties props = new Properties();
         try {
+        	System.out.println(in);
             props.load(in);
             String db_host = props.get("db_host").toString();
             String db_name = props.get("db_name").toString();
