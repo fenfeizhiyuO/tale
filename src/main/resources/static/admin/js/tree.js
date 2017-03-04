@@ -27,10 +27,26 @@ function addNodeLog(parId,name,type){
 	}else if(type==3){
 		apLog.push("edit_"+parId+"_"+name);
 	}
-	console.log(apLog);
+	//console.log(apLog);
 }
 
 
+
+function submitData(){
+	if(apLog.length==0)
+		return "";
+	 var data=apLog.join(";");
+	
+	 $.post("/admin/category/saveTree",{apLog:data},function(data){
+		//console.log(data);
+		if(data.success){
+			alert("保存成功");
+		}else
+			alert("保存失败");
+		
+	 },'json');
+	 
+}
 
 var zTree, rMenu;
 

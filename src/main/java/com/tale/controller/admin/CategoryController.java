@@ -14,6 +14,9 @@ import com.tale.dto.Types;
 import com.tale.exception.TipException;
 import com.tale.init.TaleConst;
 import com.tale.service.MetasService;
+
+import jetbrick.util.StringUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,9 +42,20 @@ public class CategoryController extends BaseController {
         return "admin/category";
     }
     
-    @Route(value = "/tree", method = HttpMethod.GET)
+    @Route(value = "tree", method = HttpMethod.GET)
     public String tree(Request request){
     	return "admin/tagtree";
+    }
+    
+    
+    @Route(value = "saveTree", method = HttpMethod.POST)
+    @JSON
+    public RestResponse saveTreeData(Request request,@QueryParam String apLog){
+    	if(StringUtils.isBlank(apLog)){
+    		return RestResponse.ok();
+    	}
+    	LOGGER.info("类别操作日志:"+apLog);
+    	return RestResponse.ok();
     }
 
     @Route(value = "save", method = HttpMethod.POST)
