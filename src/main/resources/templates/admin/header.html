@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="/static/admin/images/favicon.png"/>
     <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/static/admin/css/style.min.css?v=${version}" rel="stylesheet" type="text/css">
+    <link href="/static/admin/css/style.min.css" rel="stylesheet" type="text/css">
     <link href="//cdn.bootcss.com/limonte-sweetalert2/6.4.1/sweetalert2.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -80,6 +80,9 @@
                     </li>
                     <li #if(active=='category') class="active" #end>
                         <a href="/admin/category" class="waves-effect #if(active=='category') active #end"><i class="fa fa-tags" aria-hidden="true"></i><span> 分类/标签 </span></a>
+                    </li>
+                    <li #if(active=='categoryTree') class="active" #end>
+                    	<a href="/admin/category/tree" class="waves-effect #if(active=='categoryTree') active #end"><i class="fa fa-tags" aria-hidden="true"></i><span>分级管理</span></a>
                     </li>
                     <li #if(active=='attach') class="active" #end>
                         <a href="/admin/attach" class="waves-effect #if(active=='attach') active #end"><i class="fa fa-cloud-upload" aria-hidden="true"></i><span> 文件管理 </span></a>

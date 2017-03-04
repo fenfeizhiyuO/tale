@@ -38,6 +38,11 @@ public class CategoryController extends BaseController {
         request.attribute("tags", tags);
         return "admin/category";
     }
+    
+    @Route(value = "/tree", method = HttpMethod.GET)
+    public String tree(Request request){
+    	return "admin/tagtree";
+    }
 
     @Route(value = "save", method = HttpMethod.POST)
     @JSON

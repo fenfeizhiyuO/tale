@@ -1,0 +1,61 @@
+#include('./header.html',{active:'categoryTree', title:'分级管理'})
+<link rel="stylesheet" href="/static/admin/plugins/ztree/ztreestyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="/static/admin/plugins/ztree/css/demo.css" type="text/css">
+<script type="text/javascript" src="/static/admin/plugins/ztree/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="/static/admin/plugins/ztree/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="/static/admin/plugins/ztree/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="/static/admin/plugins/ztree/jquery.ztree.exedit.js"></script>
+<script type="text/javascript" src="/static/admin/js/tree.js"></script>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">分级管理</h4>
+    </div>
+    
+     <div class="col-md-12">
+        
+			 <div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+			</div>
+		
+	</div>
+     
+
+   
+   
+   
+   <div id="rMenu" style="background-color: white;border-color:white">
+	<ul>
+		<li id="m_add" onclick="addTreeNode();" style="background-color:#CDECCF">增加节点</li>
+		<li id="m_del" onclick="removeTreeNode();" style="background-color:#FAA0A0">删除节点</li>
+	</ul>
+	</div>
+</div>
+#include('./footer.html')
+
+	<style type="text/css">
+div#rMenu {position:absolute; visibility:hidden; top:0; background-color: #555;text-align: left;padding: 2px;}
+div#rMenu ul li{
+	margin: 1px 0;
+	padding: 0 5px;
+	cursor: pointer;
+	list-style: none outside none;
+	background-color: #DFDFDF;
+}
+	</style>
+
+<script type="text/javascript">
+
+
+
+
+    
+    
+    
+   
+
+	
+
+</script>
+</body>
+</html>
