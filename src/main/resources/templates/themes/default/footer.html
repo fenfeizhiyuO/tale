@@ -43,7 +43,7 @@
             <div class="meta-item meta-posts">
                 <h3 class="meta-title">最新文章</h3>
                 #for(post : recent_articles(8))
-                <li>
+                <li>,
                     <a href="${permalink(post)}">${post.title}</a>
                 </li>
                 #end

@@ -54,6 +54,23 @@ public class IndexController extends BaseController {
     @Inject
     private LogService logService;
 
+
+    /**
+     * 主页
+     */
+    @Route(value ="/main", method = HttpMethod.GET)
+    public  String testHtml(Request request){
+        return "admin2/index";
+    }
+
+    /**
+     * url收藏页
+     */
+    @Route(value ="/url", method = HttpMethod.GET)
+    public String testUrlHtml(Request request){
+        return "admin2/url/urlList.html";
+    }
+
     /**
      * 仪表盘
      */
