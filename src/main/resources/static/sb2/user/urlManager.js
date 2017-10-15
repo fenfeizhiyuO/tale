@@ -41,6 +41,7 @@ app.controller('urlEdit', function($scope,httpService) {
     //url地址分类
     //$scope.urlTypeList = [{"id":1,"name":"分类1"},{"id":2,"name":"分类2"},{"id":3,"name":"分类3"}];
 
+
     httpService.getData(listUrlType_url,"",function (data) {
         $scope.urlTypeList=data.payload;
     });
