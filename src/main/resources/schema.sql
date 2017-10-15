@@ -178,3 +178,17 @@ CREATE TABLE `blog`.`tb_url_type` (
   UNIQUE INDEX `name_UNIQUE` (`name` ASC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = 'Url类型';
 
+CREATE TABLE `blog`.`tb_url` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `url_type` INT NOT NULL,
+  `url` VARCHAR(300) NULL,
+  `url_desc` VARCHAR(200) NULL,
+  `url_title` VARCHAR(100) NULL,
+  `update_time` DATETIME NULL,
+  `create_time` DATETIME NULL,
+  PRIMARY KEY (`id`))
+  ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = 'url地址表';
+
+SET SQL_SAFE_UPDATES=0;
+
+

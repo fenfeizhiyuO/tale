@@ -1,6 +1,8 @@
 
 var saveUrlType_url="/url/saveUrlType";
 var listUrlType_url="/url/typeList";
+var saveUrl_url="/url/saveUrl";
+var listUrl_url="";
 var app = angular.module('urlManager', []);
 
 
@@ -39,9 +41,6 @@ app.service('httpService', function($http) {
 
 app.controller('urlEdit', function($scope,httpService) {
     //url地址分类
-    //$scope.urlTypeList = [{"id":1,"name":"分类1"},{"id":2,"name":"分类2"},{"id":3,"name":"分类3"}];
-
-
     httpService.getData(listUrlType_url,"",function (data) {
         $scope.urlTypeList=data.payload;
     });
@@ -52,7 +51,14 @@ app.controller('urlEdit', function($scope,httpService) {
             &&NotNullStr($scope.url,"url不能为空")
          ){
            var data={"type":$scope.urlType,"urlTitle":$scope.urlTitle,"url":$scope.url,"urlDesc":replaceNullStr($scope.urlDesc,"无")};
-           console.log(data);
+           httpService.postForm(saveUrl_url,data,"",function (data) {
+               if(data.success){
+                   alert("保存成功");
+               }else {
+                   alert(data.msg);
+                   return;
+               }
+           });
         }
     };
 
@@ -64,9 +70,11 @@ app.controller('urlEdit', function($scope,httpService) {
                 if(data.success){
                     $scope.urlTypeList.push({"id":data.payload,"name":$scope.urlTypeName});
                     return "保存成功";
+                }else{
+                    alert(data.msg);
+                    return;
                 }
             });
-
         }
     };
     

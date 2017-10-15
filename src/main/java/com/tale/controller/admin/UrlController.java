@@ -9,7 +9,9 @@ import com.blade.mvc.http.HttpMethod;
 import com.blade.mvc.http.Request;
 import com.blade.mvc.view.RestResponse;
 import com.tale.controller.BaseController;
+import com.tale.model.Url;
 import com.tale.model.UrlType;
+import com.tale.service.EventService;
 import com.tale.service.UrlService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +22,12 @@ import java.util.List;
 @Controller("url")
 public class UrlController extends BaseController {
 
+    private static Logger logger=LoggerFactory.getLogger(UrlController.class);
+
     @Inject
     private UrlService urlService;
+    @Inject
+    private EventService eventService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
@@ -43,19 +49,36 @@ public class UrlController extends BaseController {
     @JSON
     public RestResponse saveUrl(@QueryParam Integer type,@QueryParam String urlTitle,@QueryParam String url,
                                     @QueryParam String urlDesc){
-        return null;
-
+        Url urlEntiy=new Url();
+        urlEntiy.setCreate_time(new Date());
+        urlEntiy.setUpdate_time(new Date());
+        urlEntiy.setUrl(url);
+        urlEntiy.setUrl_desc(urlDesc);
+        urlEntiy.setUrl_title(urlTitle);
+        urlEntiy.setUrl_type(type);
+        if(this.urlService.checkNotExistUrl(urlEntiy)){
+            RestResponse<Integer> res=RestResponse.ok();
+            res.setPayload(this.urlService.saveUrl(urlEntiy));
+            eventService.insertEvent("收藏地址成功",url);
+            return res;
+        }else {
+            return RestResponse.fail("地址已存在");
+        }
     }
 
     @Route(value = "/saveUrlType", method = HttpMethod.POST)
     @JSON
     public RestResponse saveUrlType(@QueryParam String name){
-        UrlType urlType=new UrlType();
-        urlType.setName(name);
-        urlType.setCreate_time(new Date());
-        int key= urlService.saveUrlType(urlType);
-        RestResponse<Integer> res=RestResponse.ok();
-        res.setPayload(key);
-        return res;
+        if(urlService.checkNotExistUrlType(name)){
+            UrlType urlType=new UrlType();
+            urlType.setName(name);
+            urlType.setCreate_time(new Date());
+            int key= urlService.saveUrlType(urlType);
+            RestResponse<Integer> res=RestResponse.ok();
+            res.setPayload(key);
+            eventService.insertEvent("成功保存地址类型",name);
+            return res;
+        }else
+            return RestResponse.fail("类型已存在");
     }
 }
