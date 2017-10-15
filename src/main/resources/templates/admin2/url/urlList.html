@@ -58,12 +58,12 @@
                                     <form role="form">
                                         <div class="form-group">
                                             <label>新建分类</label>
-                                            <input class="form-control">
+                                            <input class="form-control" ng-model="urlTypeName">
                                             <p class="help-block">输入地址分类名称</p>
                                         </div>
                                         <button type="submit" class="btn btn-primary" ng-click="saveUrlType()" >保存</button>
-                                        <button type="submit" class="btn btn-primary" ng-click="saveUrlType()" >查询</button>
-                                        <button type="submit" class="btn btn-primary" ng-click="saveUrlType()" >重置</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="queryUrlType()" >查询</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="reset()" >重置</button>
                                     </form>
                                     <!-- 分类列表-->
                                     <div class="dataTables_scrollBody"
@@ -285,5 +285,8 @@
     </div>
 </div>
 
+
+
 <script src="/static/sb2/user/urlManager.js"></script>
+
 #include('../foot.html')
